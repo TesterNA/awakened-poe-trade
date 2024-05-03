@@ -25,13 +25,13 @@ export function updateConfig (updates: Config) {
   document.documentElement.style.fontSize = `${_config.value!.fontSize}px`
 }
 
-export function saveConfig (opts?: { isTemporary: boolean }) {
+export function saveConfig (opts?: { isTemporary?: boolean, force?: boolean }) {
   const rawConfig = toRaw(_config.value!)
-  if (rawConfig.widgets.some(w => w.wmZorder === 'exclusive' && w.wmWants === 'show')) {
+  if (!opts?.force && rawConfig.widgets.some(w => w.wmZorder === 'exclusive' && w.wmWants === 'show')) {
     return
   }
 
-  if (!isDeepEqual(rawConfig, _lastSavedConfig)) {
+  if (!isDeepEqual(rawConfig, _lastSavedConfig) || opts?.force) {
     _lastSavedConfig = JSON.parse(JSON.stringify(rawConfig))
     Host.sendEvent({
       name: 'CLIENT->MAIN::save-config',

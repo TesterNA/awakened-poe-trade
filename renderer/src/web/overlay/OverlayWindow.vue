@@ -105,7 +105,6 @@ export default defineComponent({
       if (widget.wmType === 'settings') {
         hide(widget.wmId)
       }
-      saveConfig()
     })
 
     Host.onEvent('MAIN->OVERLAY::focus-change', (state) => {
@@ -246,7 +245,7 @@ export default defineComponent({
       showEditingNotification.value = (widget.wmType === 'settings')
       // TODO: hack, should find a better way to save config
       if (wasWidget && wasWidget.wmZorder === 'exclusive' && wasWidget.wmType !== 'settings') {
-        saveConfig()
+        saveConfig({force: true})
       }
     }, { immediate: false })
 

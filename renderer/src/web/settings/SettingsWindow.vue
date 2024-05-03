@@ -153,7 +153,7 @@ export default defineComponent({
       t,
       save () {
         updateConfig(configClone.value!)
-        saveConfig()
+        saveConfig({force: true})
         pushHostConfig()
 
         wm.hide(props.config.wmId)
