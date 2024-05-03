@@ -101,6 +101,7 @@ export interface Config {
   overlayBackground: string
   overlayBackgroundClose: boolean
   restoreClipboard: boolean
+  fullScreenMode: boolean
   commands: Array<{
     text: string
     hotkey: string | null
@@ -125,6 +126,7 @@ export const defaultConfig = (): Config => ({
   overlayBackground: 'rgba(129, 139, 149, 0.15)',
   overlayBackgroundClose: true,
   restoreClipboard: false,
+  fullScreenMode: false,
   showAttachNotification: true,
   commands: [{
     text: '/hideout',
@@ -670,6 +672,7 @@ function getConfigForHost (): HostConfig {
   return {
     shortcuts: actions,
     restoreClipboard: config.restoreClipboard,
+    fullScreenMode: config.fullScreenMode,
     clientLog: config.clientLog,
     gameConfig: config.gameConfig,
     stashScroll: config.stashScroll,

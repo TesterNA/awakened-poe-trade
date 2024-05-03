@@ -14,6 +14,7 @@ import { AppTray } from './AppTray'
 import { OverlayVisibility } from './windowing/OverlayVisibility'
 import { GameLogWatcher } from './host-files/GameLogWatcher'
 import { HttpProxy } from './proxy'
+import {ConfigStore} from "./host-files/ConfigStore";
 
 if (!app.requestSingleInstanceLock()) {
   app.exit()
@@ -32,10 +33,13 @@ app.on('ready', async () => {
   const poeWindow = new GameWindow()
   const appUpdater = new AppUpdater(eventPipe)
   const httpProxy = new HttpProxy(server, logger)
+  const configStore = new ConfigStore(eventPipe)
 
   setTimeout(
     async () => {
-      const overlay = new OverlayWindow(eventPipe, logger, poeWindow, httpProxy)
+      const config = await configStore.load();
+      const fullScreenMode = config ? JSON.parse(config).fullScreenMode : false;
+      const overlay = new OverlayWindow(eventPipe, logger, poeWindow, httpProxy, fullScreenMode)
       new OverlayVisibility(eventPipe, overlay, gameConfig)
       const shortcuts = await Shortcuts.create(logger, overlay, poeWindow, gameConfig, eventPipe)
       eventPipe.onEventAnyClient('CLIENT->MAIN::update-host-config', (cfg) => {

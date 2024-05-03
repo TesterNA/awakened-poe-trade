@@ -105,6 +105,7 @@ export default defineComponent({
       if (widget.wmType === 'settings') {
         hide(widget.wmId)
       }
+      saveConfig()
     })
 
     Host.onEvent('MAIN->OVERLAY::focus-change', (state) => {

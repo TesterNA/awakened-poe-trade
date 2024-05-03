@@ -19,7 +19,8 @@ export class OverlayWindow {
     private server: ServerEvents,
     private logger: Logger,
     private poeWindow: GameWindow,
-    proxy: HttpProxy
+    proxy: HttpProxy,
+    private fullScreenMode: boolean = false
   ) {
     this.server.onEventAnyClient('OVERLAY->MAIN::focus-game', this.assertGameActive)
     this.poeWindow.on('active-change', this.handlePoeWindowActiveChange)
@@ -30,8 +31,7 @@ export class OverlayWindow {
     })
 
     if (process.argv.includes('--no-overlay')) return
-    console.log(process.argv)
-    if (process.argv.includes('--fs-beta')) {
+    if (this.fullScreenMode) {
       this.fullScreenSupport = true;
     }
 

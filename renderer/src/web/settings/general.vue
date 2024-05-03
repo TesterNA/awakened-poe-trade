@@ -24,6 +24,8 @@
       </div>
     </div>
     <ui-checkbox class="mb-4"
+                 v-model="fullScreenMode">{{ t(':game_fullscreen_mode') }}  <span class="bg-gray-200 text-gray-900 rounded px-1">{{ t('Restart required') }}</span></ui-checkbox>
+    <ui-checkbox class="mb-4"
       v-model="restoreClipboard">{{ t(':restore_clipboard') }}</ui-checkbox>
     <div class="mb-2">
       <div class="flex-1 mb-1">{{ t(':poe_log_file') }}</div>
@@ -85,6 +87,7 @@ export default defineComponent({
       }),
       realm: configModelValue(() => props.config, 'realm'),
       restoreClipboard: configModelValue(() => props.config, 'restoreClipboard'),
+      fullScreenMode: configModelValue(() => props.config, 'fullScreenMode'),
       showAttachNotification: configModelValue(() => props.config, 'showAttachNotification'),
       windowTitle: configModelValue(() => props.config, 'windowTitle')
     }

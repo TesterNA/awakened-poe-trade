@@ -314,6 +314,7 @@
     "poe_log_file" :"Файл логов PoE",
     "poe_cfg_file" :"Файл настроек PoE",
     "restore_clipboard" :"Восстанавливать буфер обмена",
+    "game_fullscreen_mode" :"Игра запущена в полноєкранном режиме (бета)",
     "show_overlay_ready" :"Показывать уведомление при открытии PoE",
     "debug_hotkeys": "Запись всех нажатий клавиш"
   },
