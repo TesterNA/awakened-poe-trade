@@ -245,7 +245,7 @@ export default defineComponent({
       showEditingNotification.value = (widget.wmType === 'settings')
       // TODO: hack, should find a better way to save config
       if (wasWidget && wasWidget.wmZorder === 'exclusive' && wasWidget.wmType !== 'settings') {
-        saveConfig({force: true})
+        saveConfig({ force: true })
       }
     }, { immediate: false })
 
