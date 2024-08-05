@@ -33,6 +33,7 @@ export class AppUpdater {
 
     // https://www.electron.build/configuration/nsis.html#portable
     autoUpdater.autoDownload = !process.env.PORTABLE_EXECUTABLE_DIR
+    autoUpdater.allowPrerelease = false;
 
     if (!autoUpdater.autoDownload || process.platform === 'darwin') {
       this.noAutoUpdatesReason = 'not-supported'
